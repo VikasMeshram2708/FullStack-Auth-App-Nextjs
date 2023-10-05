@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/dbConfig/dbConfig";
-const User = db.collection("users");
+export const User = db.collection("users");
 import bcryptjs from "bcryptjs";
 import * as jwt from "jsonwebtoken";
 
