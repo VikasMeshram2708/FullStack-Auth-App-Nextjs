@@ -25,11 +25,15 @@ const SignUpPage = () => {
       event.preventDefault();
       setLoading(true);
 
-      const response = await axios.post("/api/users/signup",userData);
+      const response = await axios.post("/api/users/signup", userData);
       console.log(response.data);
 
-
       console.log(userData);
+      Swal.fire({
+        icon: "success",
+        title: "Registration Completed Successfully",
+        text: "User Is Registered",
+      });
       router.push("/login");
     } catch (error) {
       const errorMessage = error as Error;
