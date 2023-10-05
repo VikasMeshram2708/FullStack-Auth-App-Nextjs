@@ -1,0 +1,1 @@
+# Full Stack Authentication & Authorization App Build with Next.js
