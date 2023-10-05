@@ -13,6 +13,8 @@
 * [*] In Logout validation just clearn out the token that we have.
 
 
+* [] Add Middlewares to prevent from going to protected routes without authentication.
+
 ### Protection
 
 * Protect the Routes
