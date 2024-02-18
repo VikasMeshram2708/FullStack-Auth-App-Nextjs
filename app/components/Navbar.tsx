@@ -25,13 +25,15 @@ export default function Navbar() {
             className="input input-bordered w-24 md:w-auto"
           />
         </div> */}
-        <button
-          onClick={() => signIn("google")}
-          type="button"
-          className="btn btn-lg btn-accent"
-        >
-          {status === "loading" ? "Loading..." : "Sign In"}
-        </button>
+        {status === "unauthenticated" && (
+          <button
+            onClick={() => signIn("google")}
+            type="button"
+            className="btn btn-lg btn-accent"
+          >
+            Sign In
+          </button>
+        )}
         {status === "authenticated" && (
           <div className="dropdown dropdown-end">
             <div
