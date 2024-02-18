@@ -1,3 +1,5 @@
+import { connectToDb } from "@/lib/DB";
+import User from "@/models/User";
 import NextAuth, { NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 
@@ -16,16 +18,23 @@ const options: NextAuthOptions = {
       if (account?.provider === "google") {
         const { name, email } = user;
         try {
-          const res = await fetch("http://localhost:3000/api/User", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ name, email }),
+          // check if the user already registered
+          await connectToDb();
+          const userExists = await User.findOne({
+            email,
           });
 
-          if (res.ok) {
-            return user;
+          if (!userExists) {
+            const res = await fetch("http://localhost:3000/api/User", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ name, email }),
+            });
+            if (res.ok) {
+              return user;
+            }
           }
         } catch (error) {
           console.log(
