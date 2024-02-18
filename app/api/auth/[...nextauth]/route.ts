@@ -11,6 +11,7 @@ const options: NextAuthOptions = {
     }),
   ],
   callbacks: {
+    // @ts-ignore
     async signIn({ user, account }) {
       console.log("User", user);
       console.log("Account", account);
